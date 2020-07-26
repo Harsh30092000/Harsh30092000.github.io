@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript">
+		function rgbToHex(x)
+		{
+			let arr = x.split(",");
+			let r=Number(arr[0]);
+			let g=Number(arr[1]);
+			let b=Number(arr[2]);
+
+  			return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+		}
+		function changeback()
+		{
+			let currentbackhex = document.getElementById('hexb').value;
+			let currentbackrgb = document.getElementById('rgbb').value;
+			
+			if(currentbackhex == "" &&  currentbackrgb == "")
+			{
+				document.getElementById('first').style.backgroundColor = "black";
+			}
+			else if (currentbackrgb=="") 
+			{
+				document.getElementById('first').style.backgroundColor = currentbackhex;
+			}
+			else if (currentbackhex=="")
+			{
+				document.getElementById('first').style.backgroundColor = rgbToHex(currentbackrgb);
+			}
+			else
+			{
+				document.getElementById('first').style.color = "black";
+			}
+		}
+		function changetext()
+		{
+			let currenttexthex = document.getElementById('hext').value;
+			let currenttextrgb = document.getElementById('rgbt').value;
+			if(currenttextrgb == "" && currenttexthex == "")
+			{
+				document.getElementById('word').style.color = "white";
+			}
+			else if(currenttextrgb == "")
+			{
+				document.getElementById('word').style.color = currenttexthex;
+			}
+			else if(currenttexthex == "")
+			{
+				document.getElementById('word').style.color = rgbToHex(currenttextrgb);
+			}
+			else
+			{
+				document.getElementById('word').style.color = "white";
+			}
+		}
+	</script>
+	<style type="text/css">
+		h1
+		{
+			text-align: center;
+		}
+
+		#first
+		{
+			background-color: black;
+			height: 40vh;
+			margin-left: 10vw;
+			margin-right: 10vw;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		#word
+		{
+			color: white;
+		}
+		#inputboxs
+		{
+			display: flex;
+			margin-right: 10vw;
+			margin-left: 10vw;
+			align-items: center;
+			justify-content: space-between;
+		}
+	</style>
+	<title>Color Pallet</title>
+</head>
+<body>
+	<h1>Color Pallet</h1>
+	<div id="first"><h1 id="word">The quick brown fox jumps over the lazy dog.</h1></div>
+	<div id="inputboxs">
+		<div id="backcolor">
+			<h3>Background Color</h3>
+			<input type="text" id="hexb" placeholder="Hex Code Here" >
+			<input type="text" id="rgbb" placeholder="RGB here ex:0,0,0">
+			<br>
+			<button onclick="changeback()">Update</button>
+		</div>
+		<div id="words">
+			<h3>Text</h3>
+			<input type="text" id="hext" placeholder="Hex Code Here">
+			<input type="text" id="rgbt" placeholder="RGB here ex:0,0,0">
+			<br>
+			<button onclick="changetext()">Update</button>
+		</div>
+	</div>
+</body>
+</html>
