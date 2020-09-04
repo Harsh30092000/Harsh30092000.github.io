@@ -57,7 +57,6 @@
 		}
 		function swapcol()
 		{
-			console.log("hel");
 			let currentbackhex = document.getElementById('hexb').value;
 			let currentbackrgb = document.getElementById('rgbb').value;
 			let currenttexthex = document.getElementById('hext').value;
@@ -113,24 +112,24 @@
 <body>
 	<a href="index.html"><img id="home" src="house.png"></a>
 	<h1>Color Pallet</h1>
-	<div id="first"><h1 id="word">The quick brown fox jumps over the lazy dog.</h1></div>
+	<div id="first"><h1 style="padding-left: 5px; padding-right: 5px;" id="word">The quick brown fox jumps over the lazy dog.</h1></div>
 	<div id="inputboxs">
 		<div id="backcolor" style="text-align: center;">
 			<h3 >Background Color</h3>
-			<input type="text" id="hexb" placeholder="Hex Code Here" >
-			<input type="text" id="rgbb" placeholder="RGB Here ex:0,0,0">
+			<input style = "margin-top:7px;" type="text" id="hexb" placeholder="Hex Code Here" >
+			<input style = "margin-top:7px;" type="text" id="rgbb" placeholder="RGB Here ex:0,0,0">
 			<br>
-			<button onclick="changeback()">Update</button>
+			<button style = "margin-top: 7px;" onclick="changeback()">Update</button>
 		</div>
 		<div id="swap">
 			<button onclick="swapcol()">Swap &#x21C4</button>
 		</div>
 		<div id="words" style="text-align: center;">
 			<h3>Text</h3>
-			<input type="text" id="hext" placeholder="Hex Code Here">
-			<input type="text" id="rgbt" placeholder="RGB Here ex:0,0,0">
+			<input style = "margin-top:7px;" type="text" id="hext" placeholder="Hex Code Here">
+			<input style = "margin-top:7px;" type="text" id="rgbt" placeholder="RGB Here ex:0,0,0">
 			<br>
-			<button onclick="changetext()">Update</button>
+			<button style = "margin-top:7px;" onclick="changetext()">Update</button>
 		</div>
 	</div>
 </body>
