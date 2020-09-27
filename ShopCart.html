@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        #changeIP
+        {
+            display: none;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="GoToShop()">Let's Shop</button>
+    <h1 id="ip">You are currently connected to </h1>
+    <script>
+        currentIP = "127.0.0.1:5500";
+        z = document.getElementById("ip").innerHTML;
+        document.getElementById("ip").innerHTML = z + " " + currentIP;
+    </script>
+    <button onclick="myFunction()">Not The Correct one?</button>
+    <div id = "changeIP">
+        <input id="NewIP" type="text" placeholder="Enter the ip"></input>
+        <button onclick="UpdateIP()">Submit</button>
+    </div>
+<script>
+function myFunction() {
+  var x = document.getElementById("changeIP");
+  if (x.style.display === "none") {
+    x.style.display = "inline-block";
+  } else {
+    x.style.display = "none";
+  }
+}
+
+function UpdateIP(){
+    x = document.getElementById("NewIP").value;
+    currentIP = x;
+    z = document.getElementById("ip").innerHTML;
+    document.getElementById("ip").innerHTML = "You are currently connected to " + currentIP;
+}
+
+function GoToShop(){
+    url_ = "https://" + currentIP;
+    console.log(url_);
+    location.replace(url_);
+}
+</script>
+</body>
+</html>
