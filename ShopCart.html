@@ -4,49 +4,208 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Internal Styling -->
     <style>
-        #changeIP
-        {
-            display: none;
-            width: 50%;
+        body{
+            text-align: center;
+            
         }
+        .main
+        {
+            background-color: #f8d6ff;
+            min-height: 100vh;
+            min-width: 100%;
+        }
+        .content{
+            transform: translate(0,30vh);
+            background-color: #f8d6ff;
+        }
+        .bttn{
+            margin-top: 10px;
+            font-size: 150%;
+            width: 200px;
+        }
+
+        .ip_line{
+            font-size: 250%;
+        }
+        .ip_box{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 15px;
+            width: 30%;
+            margin: 35px auto;
+        }
+
+        .chnge_ip_bg{
+            transition: 0.5s ease-in;
+            z-index: -10;
+            background-color: rgba(0, 0, 0, 0.7);
+            min-width: 100%;
+            min-height: 100vh;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .pop_up{
+            background-color: rgba(256, 256, 256, 1);
+            transform: translate(0,37vh);
+            border-radius: 10px;
+            padding-bottom: 10px;
+        }
+        .ip_title{
+            text-align: left;
+            margin: 10px 10px;
+
+        }
+        .ip_input{
+            width: 50%;
+            font-size: 150%;
+            line-height: 40px;
+            margin: 15px auto;
+            border: 0.5px solid black;
+        }
+        .ip_submit{
+            line-height: 30px;
+            margin-bottom: 12px;
+        }
+        .clse{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: transparent;
+            border: 0;
+
+        }
+
+
+
+
+        @media only screen and (max-width: 992px) {
+            .content{
+                transform: translate(0,35vh);
+            }
+            .ip_box{
+                width: 50%;
+            }
+            .ip_line{
+                font-size: 200%;
+            }
+            .ip_box{
+                font-size: 200%;
+            }
+            .pop_up{
+                transform: translate(0,40vh);
+            }
+        }
+
+        @media only screen and (max-width: 666px) {
+            .content{
+                transform: translate(0,23vh);
+            }
+            .ip_box{
+                width: 80%;
+            }
+            .ip_line{
+                font-size: 200%;
+            }
+            .ip_box{
+                font-size: 200%;
+            }
+            .pop_up{
+                transform: translate(0,40vh);
+            }
+        }
+
+
     </style>
 </head>
+
 <body>
-    <button onclick="GoToShop()">Let's Shop</button>
-    <h1 id="ip">You are currently connected to </h1>
-    <script>
-        currentIP = "127.0.0.1:5500";
-        z = document.getElementById("ip").innerHTML;
-        document.getElementById("ip").innerHTML = z + " " + currentIP;
-    </script>
-    <button onclick="myFunction()">Not The Correct one?</button>
-    <div id = "changeIP">
-        <input id="NewIP" type="text" placeholder="Enter the ip"></input>
-        <button onclick="UpdateIP()">Submit</button>
+    
+    <div class="container main">
+        <div class="row content">
+
+        <!-- IP Display -->      
+        <div class="col-lg-12">
+            <h2 class="ip_line">You are currently connected to</h2>
+            <div class="ip">
+                <h1 id="ip" class="ip_box"></h1>
+            </div>        
+
+            <script>
+                currentIP = "127.0.0.1:5500";
+                document.getElementById("ip").innerHTML = currentIP;
+            </script>
+        </div>
+        
+        <div class="col-lg-3 col-md-2"></div>
+
+        <!-- Change IP -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <button onclick="myFunction()" class="btn btn-outline-danger bttn"><i class="fa fa-close icn" style="color:red"></i> Not Correct?</button>
+
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("ip_master");
+                    x.style.zIndex = 10;
+                }
+                function close_btn(){
+                    document.getElementById("ip_master").style.zIndex = -1;
+                }
+                function UpdateIP(){
+                    var xc = document.getElementById("ip_master");
+                    xc.style.zIndex = -10;
+                    x = document.getElementById("NewIP").value;
+                    currentIP = x;
+                    document.getElementById("ip").innerHTML = currentIP;
+                }
+            </script>
+        </div>
+
+        <!-- Let's Shop -->
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <button onclick="GoToShop()" class="btn btn-outline-success bttn"><i class="fa fa-shopping-cart icn" style="color:green"></i> Let's Shop</button>
+            
+            <script>
+                function GoToShop(){
+                    url_ = "http://" + currentIP;
+                    console.log(url_);
+                    window.location.href = url_;
+                }
+            </script>
+        </div>
+
+        <div class="col-lg-3 col-md-2"></div>
+
+            <!-- Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        
+        </div>
     </div>
-<script>
-function myFunction() {
-  var x = document.getElementById("changeIP");
-  if (x.style.display === "none") {
-    x.style.display = "inline-block";
-  } else {
-    x.style.display = "none";
-  }
-}
+    
+    <div class="container chnge_ip_bg" id="ip_master">
+        <div class="row">
+            <div class="col-lg-3 col-md-2"></div> 
+            <div class="col-lg-6 col-md-8 pop_up">
+                <h2 class="ip_title">Change IP</h2>
+                <button onclick="close_btn()" class="clse"><i class="fa fa-close"></i></button>
+                <hr>
+                <input id="NewIP" class="ip_input" type="text" placeholder="Enter the IP"></input>
+                <button class="btn btn-success ip_submit" onclick="UpdateIP()">Submit</button>
+            </div>
+        </div>
+    </div>
 
-function UpdateIP(){
-    x = document.getElementById("NewIP").value;
-    currentIP = x;
-    z = document.getElementById("ip").innerHTML;
-    document.getElementById("ip").innerHTML = "You are currently connected to " + currentIP;
-}
-
-function GoToShop(){
-    url_ = "http://" + currentIP;
-    console.log(url_);
-    location.replace(url_);
-}
-</script>
 </body>
 </html>
